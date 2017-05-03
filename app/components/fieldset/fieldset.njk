@@ -1,0 +1,32 @@
+{% macro fieldset(name, label='', sublabel='', inline='', elements='', group='', visually_hidden=true, error='') %}
+{% set label = getFormattedProp(name, 'label', { value: label }) %}
+{% set sublabel = getFormattedProp(name, 'sublabel', { value: sublabel }) %}
+{% set inline = getElementProp(name, 'inline', { value: inline }) %}
+{% if not elements and getElementProp(name, 'elements') %}
+{% set elements = getElementProp(name, 'elements') %}
+{% endif %}
+	{#<h2 class="heading-small">{{ label | safe }}</h2>#}
+	{#{% if sublabel %}
+	<p>{{ sublabel | safe }}</p>
+	{% endif %}#}
+	<fieldset{% if inline %} class="inline"{% endif %}>
+		<legend{% if visually_hidden %} class="xvisuallyhidden"{% endif %}>
+		<span class="form-label-bold">{{ label | safe }}</span>
+			{% if sublabel %}
+			<span class="form-sublabel">{{ sublabel | safe }}</span>
+			{% endif %}
+		{% if hint %}
+			<span class="form-hint">
+				{{ hint | safe }}
+			</span>
+		{% endif %}
+		{{ controlError(name, error) }}
+		</legend>
+	{% if caller %}
+		{{ caller() }}
+	{% endif %}
+	{% if elements %}
+		{{ macros.group(elements=elements) }}
+	{% endif %}
+	</fieldset>
+{% endmacro %}

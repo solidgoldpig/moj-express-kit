@@ -1,0 +1,20 @@
+{% extends 'admin/admin-base/admin-base.html' %}
+
+{% block page_title %}
+Elements - Prototype
+{% endblock %}
+
+{% block admin_content %}
+<p><a class="link-back" href="/admin/elements">Back to element types</a></p>
+<h1 class="heading-large">{{ type }} elements</h1>
+
+<ul class="list list-bullet">
+{% for key in keys %}
+<li><a href="/admin/element/{{ key }}">{{ key }}</a></li>
+{% endfor %}
+</ul>
+{% if type === 'routes' %}
+<p><a href="/admin/routes">View route entrypoints</a></p>
+{% endif %}
+
+{% endblock %}

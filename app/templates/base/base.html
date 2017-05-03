@@ -1,0 +1,79 @@
+{% extends "templates/govuk_template.njk" %}
+
+{% import "components/utils.njk" as utils with context %}
+
+
+{{ utils.addMacros([
+  "components/blockHeading/blockHeading.njk",
+  "components/blockLede/blockLede.njk",
+  "components/body/body.njk",
+  "components/checkboxGroup/checkboxGroup.njk",
+  "components/control/control.njk",
+  "components/controlLabel/controlLabel.njk",
+  "components/controlError/controlError.njk",
+  "components/dependsAria/dependsAria.njk",
+  "components/dependsHidden/dependsHidden.njk",
+  "components/fieldset/fieldset.njk",
+  "components/file/file.njk",
+  "components/formGroup/formGroup.njk",
+  "components/group/group.njk",
+  "components/input/input.njk",
+  "components/inset/inset.njk",
+  "components/notice/notice.njk",
+  "components/number/number.njk",
+  "components/optionLabel/optionLabel.njk",
+  "components/page_header/page_header.njk",
+  "components/password/password.njk",
+  "components/radioGroup/radioGroup.njk",
+  "components/raw/raw.njk",
+  "components/reveal/reveal.njk",
+  "components/string/string.njk",
+  "components/subelement/subelement.njk",
+  "components/text/text.njk"
+]) }}
+
+{% block stylesheet %}
+<script>if(window.addEventListener){addEventListener('error', window.__e=function f(e){f.q=f.q||[];f.q.push(e)})}</script>
+{{ super() }}
+{% endblock %}
+
+{#{% block top_of_page %}$$top_of_page{% endblock %}#}
+{% block html_lang %}$$html_lang{% endblock %}
+{#{% block page_title %}$$page_title{% endblock %}#}
+{#{% block stylesheet %}$$stylesheet{% endblock %}#}
+{#{% block head %}<script>console.log('$$head')</script>{% endblock %}#}
+{#{% block body_classes %}$$body_classes{% endblock %}#}
+{#{% block body_start %}$$body_start{% endblock %}#}
+{#{% block skip_link_message %}$$skip_link_message{% endblock %}#}
+{#{% block cookie_message %}$$cookie_message{% endblock %}#}
+{% block header_class %}with-proposition{% endblock %}
+{#{% block homepage_url %}$$homepage_url{% endblock %}#}
+{#{% block logo_link_title %}$$logo_link_title{% endblock %}#}
+{#{% block global_header_text %}$$global_header_text{% endblock %}#}
+{#{% block inside_header %}$$inside_header{% endblock %}#}
+{#{% block proposition_header %}$$proposition_header{% endblock %}#}
+{#{% block after_header %}$$after_header{% endblock %}#}
+{#{% block phase_banner %}$$phase_banner{% endblock %}#}
+{#{% block content %}content{% endblock %}#}
+{#{% block footer_top %}$$footer_top{% endblock %}#}
+{#{% block footer_support_links %}$$footer_support_links{% endblock %}#}
+{#{% block licence_message %}$$licence_message{% endblock %}#}
+{#{% block crown_copyright_message %}$$crown_copyright_message{% endblock %}#}
+{#{% block body_end %}$$body_end{% endblock %}#}
+
+{% block proposition_header %}
+<div class="header-proposition">
+  <div class="content">
+    <a href="/" id="proposition-name" data-link-type="service-name">{% block proposition_name %}Propositon name{% endblock %}</a>
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+{% block breadcrumbs_content %}{% endblock %}
+{% block main_content %}
+<main>
+{% block grid_content %}{{ macros.group(elements=route.elements) }}{% endblock %}
+</main>
+{% endblock %}
+{% endblock %}

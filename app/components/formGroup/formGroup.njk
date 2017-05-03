@@ -1,0 +1,7 @@
+{% macro formGroup(name, error='', depends=false, open=false) -%}
+	<div class="form-group{% if error %} error{% endif %}{{ dependsHidden(depends=depends, open=open) }}"{{ dependsAria(depends=depends, open=open) }}{% if name %} data-element-block="{{name}}"{% endif %}>
+	{% if caller %}
+	{{ caller() }}
+	{% endif %}
+	</div>
+{%- endmacro %}

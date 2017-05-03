@@ -1,0 +1,3 @@
+{% macro body(name) %}
+	<div{% if name %} data-element-block="{{name}}"{% endif %}>{{ getFormattedBody(name, 'body') | safe }}</div>
+{% endmacro %}

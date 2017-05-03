@@ -1,0 +1,76 @@
+{% extends "templates/layout_elements.html" %}
+
+{% macro wibble(hello) %}
+{{this}} {{self}}
+Hello - {{ hello }}, woot {{woot}}, toosh {{toosh}}
+{% endmacro %}
+
+{% block page_title %}
+  Action Plan
+{% endblock %}
+
+{% block content %}
+
+<main id="content" role="main">
+  <div class="grid-row">
+    <div class="xcolumn-two-thirds">
+
+      <h1 class="heading-xlarge">
+        Elements
+      </h1>
+	{#% remote "shidazzle" %}
+	TWONK-A-DONK
+	{% endremote %#}
+	{#{ nibble('top')}#}
+
+	{{element.body('ermintrude')}}
+
+	  {{ wibble(woot='wazaa', toosh=23) }}
+
+<form action="/" method="post" class="form">
+{{ element.text('wham', error='Ay Caramba!', value='Ay wahey!') }}
+{{ element.control('wham', error='Caramba!', value='wahey!') }}
+{{ element.control('wham', label='Muy Labelo!', hint='A truly useful hint!') }}
+{{ element.password('spliffing', error='Ay Caramba!', value='Ay wahey!') }}
+{{ element.control('wham', type='password', error='Caramba!', value='wahey!') }}
+
+
+{{ element.radioGroup('housing-act') }}
+{{ element.radioGroup('twosh') }}
+	{{ element.checkboxGroup('nationality') }}
+
+{#
+{{ element.control('wham', type='password') }}
+{{ element.control('wham', type='number') }}
+{{ element.control('wham', type='file') }}
+
+
+	{{ element.text('wham') }}
+	
+	{{ element.number('wham') }}
+	{{ element.file('wham') }}
+	{{ element.input('foo', value='bar') }}
+	{{ element.password('pass', value='password') }}
+	{{ element.radioGroup('housing-act') }}
+	{{ element.radioGroup('twosh') }}
+	{{ element.radioGroup('gash', inline=false, or=true) }}
+	{{ element.checkboxGroup('nationality') }}
+	{{ element.control('foo', value='kooool') }}
+	{{ element.input('foo', value='whammo') }}
+	{% set controlType = 'input' %}
+	{{ element[controlType]('foo', value='blammo') }}
+#}
+</form>
+
+
+
+
+
+
+    </div>
+  </div>
+</main>
+
+{% endblock %}
+
+

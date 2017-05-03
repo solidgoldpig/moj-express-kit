@@ -1,0 +1,8 @@
+{% extends 'admin/admin-base/admin-base.html' %}
+
+{% block main_content %}
+
+{{ elements | dump}}
+{{ macros.checkboxGroup('blah', label='Oh hai', options=elements) }}
+
+{% endblock %}

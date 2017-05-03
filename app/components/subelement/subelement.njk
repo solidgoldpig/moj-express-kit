@@ -1,0 +1,14 @@
+{% macro subelement(name, closed=false) %}
+{% if name %}
+	{% set subdepends = checkRevealRequired(name) %}
+	{% if subdepends %}
+		{% set subopen = checkNoDependency(name) %}
+		{% if closed %}
+			{% set subopen = false %}
+		{% endif %}
+	{% endif %}
+	<div class="panel panel-border-narrow{{ dependsHidden(depends=subdepends, open=subopen) }}"{{ dependsAria(depends=subdepends, open=subopen) }}>	
+		{% call control(name, skipDependencyCheck=true) %}{% endcall %}
+	</div>
+{% endif %}
+{% endmacro %}

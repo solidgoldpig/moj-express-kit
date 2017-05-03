@@ -1,0 +1,23 @@
+{% from '../blockHeading/blockHeading.njk' import blockHeading with context %}
+{% from '../control/control.njk' import control with context %}
+{% macro group(name='', heading='', elements=[]) %}
+<div{% if name %} data-element-block="{{name}}"{% endif %}>
+{{ blockHeading(name, heading=heading) }}
+{% if name %}
+{% set elements = getElementProp(name, 'elements') %}
+{% endif %}
+{% for element in elements %}
+	{% if element.type %}
+		{% if macros[element.type] %}
+		{#{% call macros[element.type](element.data) %}{% endcall %}#}
+		{{ macros[element.type](element.data) }}
+		{% else %}
+		<p>NO SUCH MACRO : {{ element.type }}:</p>
+		{% endif %}
+	{% else %}
+	{#{% call control(element) %}{% endcall %}#}
+	{{ control(element) }}
+	{% endif %}
+{% endfor %}
+</div>
+{% endmacro %}

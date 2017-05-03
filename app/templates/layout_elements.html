@@ -1,0 +1,12 @@
+{% set layout = "templates/layout_branded.html" %}
+{% if flags.degovukify %}
+{% set layout = "templates/layout_unbranded.html" %}
+{% endif %}
+
+{% if mergeObjects %}
+{% import "macros/elements.nunjucks" as elementMacros %}
+{% import "macros/custom_elements.nunjucks" as customElementMacros %}
+{% set elementMacros = mergeObjects(elementMacros, customElementMacros) %}
+{% endif %}
+{% extends layout %}
+
