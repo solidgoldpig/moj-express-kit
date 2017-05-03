@@ -24,7 +24,7 @@ const packageJson = require(path.join(appDir, 'package.json'))
 const getDistPath = (srcDir = '') => path.join(appDir, 'public', srcDir)
 
 const ENV = process.env.ENV
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 3000
 
 // UH HUH???? LOOKS A BIT RUBBISH
 if (!ENV || ENV === 'a11y') {
