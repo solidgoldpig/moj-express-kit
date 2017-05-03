@@ -283,7 +283,7 @@ app.use((req, res, next) => {
   res.locals.env = process.env
   req.ENV = ENV
   req.env = process.env
-  req.servername = req.protocol + '://' + req.headers.host
+  req.servername = (ENV ? 'https' : 'http') + '://' + req.headers.host
   next()
 })
 
