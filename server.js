@@ -279,7 +279,6 @@ app.use(assetSrcPath, express.static(path.join(appDir, 'node_modules', 'govuk_fr
 
 // SET US UP SOME BEASTIES
 app.use((req, res, next) => {
-  console.log('req.rawHeaders', req.rawHeaders)
   res.locals.ENV = ENV
   res.locals.env = process.env
   req.ENV = ENV
