@@ -324,25 +324,18 @@ app.use('/', express.static(getDistPath(), {
 // app.use('/', routes)
 
 const { GA_TRACKING_ID } = process.env
-let errs = {
-  401: {
-    title: 'You’re not eligible to use this service',
-    message: 'Based on the answers you’ve given, you currently can’t use this service.',
-    more: '<p>Visit GOV.UK for more information on <a href="https://www.gov.uk/looking-after-children-divorce">making child arrangements</a> with the other parent.</p><p>Thank you for your time.</p>'
-  },
-  403: {
-    title: 'This service is not available',
-    message: 'This service is currently in private beta and not available to you.',
-    more: 'Visit GOV.UK for more information on <a href="https://www.gov.uk/looking-after-children-divorce">making child arrangements</a>.'
-  },
-  404: {
-    title: 'This page can’t be found',
-    message: 'Please check you’ve entered the correct web address.'
-  },
-  500: {
-    title: 'Sorry, we’re currently experiencing technical difficulties',
-    message: 'Please try again later.'
+
+function errorRender (req, res, errCode) {
+
+  const route = {
+    id: errCode
   }
+
+  res.status(errCode)
+  res.render(`templates/error/${errCode}`, {
+    route,
+    errCode
+  })
 }
 function errorHandler (err, req, res, next) {
   if (res.headersSent) {
@@ -354,22 +347,14 @@ function errorHandler (err, req, res, next) {
     if (isNaN(errCode) || errCode > 500) {
       errCode = 500
     }
-
-    const errorPage = Object.assign({
-      status: errCode
-    }, errs[errCode])
-
-    res.status(errCode)
-    res.send(`errCode ${errCode}`)
-    return
-    res.render('error', {
-      type: 'error',
-      page: errorPage,
-      GA_TRACKING_ID,
-      req
-    })
+    errorRender (req, res, errCode)
   }
 }
+
+app.use((res, req, next) => {
+  // if we got here it's not found
+  errorRender(res, req, 404)
+})
 
 app.use(errorHandler)
 
