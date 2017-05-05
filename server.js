@@ -130,6 +130,15 @@ app.use(cookieParser())
 // Run everything through basic auth
 app.use(auth)
 
+// send assetPath to all views
+// NB. more vars set up later on
+app.use(function (req, res, next) {
+  res.locals.asset_path = `/${assetPath}/`
+  next()
+})
+
+// TODO: remove need for this TERRIBLE kludge
+app.use(routes.globalMethods)
 
 // Shut out users who have not come via private beta
 if (!ENV || ENV === 'prod' || ENV === 'staging' || ENV === 'private-beta') {
@@ -154,23 +163,26 @@ if (!ENV || ENV === 'prod' || ENV === 'staging' || ENV === 'private-beta') {
     }
     res.redirect('/')
   })
+  const allowedRegex = /\.[^.]{2,3}(\?[^?]+){0,1}$/
   app.use((req, res, next) => {
     if (req.connection.remoteAddress.includes('127.0.0.1')) {
       return next()
     }
-    if (!req.url.match(/\.(css|js)/)) {
+    if (!req.url.match(allowedRegex)) {
       if (!req.cookies || !req.cookies.surveyData) {
         let referrer = req.query.referrer
         let uuid = req.query.uuid
         if (!referrer || !referrer.includes('private-beta-cla') || !uuid) {
           disqualifiedUser(req)
-        }
-        res.cookie('surveyData', JSON.stringify({
-          campaignName: 'private-beta-cla',
-          uuid
-        }))
-        if (req.url.includes('/landing')) {
-          res.redirect('/accepted')
+        } else {
+          res.cookie('surveyData', JSON.stringify({
+            campaignName: 'private-beta-cla',
+            uuid
+          }))
+          if (req.url.includes('/landing')) {
+            res.redirect('/accepted')
+            return
+          }
         }
       }
     }
@@ -195,13 +207,6 @@ var nunjucksAppEnv = nunjucks.configure(appViews, {
   watch: true
 })
 
-
-// send assetPath to all views
-// NB. more vars set up later on
-app.use(function (req, res, next) {
-  res.locals.asset_path = `/${assetPath}/`
-  next()
-})
 
 
 function TurnipExtension() {
@@ -289,6 +294,7 @@ app.use((req, res, next) => {
   next()
 })
 
+
 app.use('/', routes);
 
 const context = { woot: 'w00t!', gobble:'explicit gobble', xasset_path:'/xpublic/'}
@@ -344,7 +350,7 @@ function errorHandler (err, req, res, next) {
     return next(err)
   }
   if (err) {
-    logger(err)
+    logger(req.originalUrl, err)
     let errCode = Number(err.message.toString())
     if (isNaN(errCode) || errCode > 500) {
       errCode = 500
@@ -362,5 +368,6 @@ app.use(errorHandler)
 
 
 
-app.listen(PORT);
-logger('CAIT is running on localhost:' + PORT)
+app.listen(PORT, () => {
+  logger('CAIT is running on localhost:' + PORT)
+})
