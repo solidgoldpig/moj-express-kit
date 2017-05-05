@@ -271,6 +271,8 @@ nunjucksAppEnv.addFilter('json', JSON.stringify)
 
 // Middleware to serve static assets
 const assetSrcPath = `/public`
+// first path to allow serving of html
+app.use('/', express.static(path.join(appDir, assetPath, 'html')))
 app.use(assetSrcPath, express.static(path.join(appDir, assetPath)))
 app.use(assetSrcPath, express.static(path.join(appDir, 'app', 'assets')))
 app.use(assetSrcPath, express.static(path.join(kitDir, 'app', 'assets')))
