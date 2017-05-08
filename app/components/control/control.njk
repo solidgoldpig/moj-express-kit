@@ -1,8 +1,10 @@
 {% macro control(name, type='', value='', error='', label='', sublabel='', hint='', heading='', inline='', depth=2) -%}
 {% if checkNoDependency(name, true) %}
 {% set type = getElementProp(name, 'type', 'text', { value: type }) %}
-{% if macros[type] %}{#<div id="form-control_{{name}}">#}
-	{{ macros[type](name, value=value, error=error, label=label, sublabel=sublabel, hint=hint, heading=heading, inline=inline, depth=depth) }}
-{#</div>#}{% else %}<p>NO SUCH MACRO :{{ type }}:</p>{% endif %}
+{% if macros[type] %}
+{% set macroOutput = macros[type](name, value=value, error=error, label=label, sublabel=sublabel, hint=hint, heading=heading, inline=inline, depth=depth) %}
+{{ macroOutput | safe }}
+{#{{ macroOutput | makeEditable(name, type) | safe }}#}
+{% else %}<p>NO SUCH MACRO :{{ type }}:</p>{% endif %}
 {% endif %}
 {%- endmacro %}
