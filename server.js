@@ -26,12 +26,6 @@ const getDistPath = (srcDir = '') => path.join(appDir, 'public', srcDir)
 const ENV = process.env.ENV
 const PORT = process.env.PORT || 3000
 
-// UH HUH???? LOOKS A BIT RUBBISH
-if (!ENV || ENV === 'a11y') {
-  // try {
-  //   fs.unlinkSync(getDistPath('robots.txt'))
-  // } catch (e) {}
-}
 
 const routes = require('./lib/routes-metadata.js')
 
@@ -63,6 +57,10 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST')
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, content-type, Authorization')
   res.setHeader('X-Robots-Tag', 'noindex,nofollow')
+  if (req.url === '/robots.txt') {
+    return res.send(`User-agent: *
+disallow: /`)
+  }
   next()
 })
 
