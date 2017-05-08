@@ -77,3 +77,12 @@
 </main>
 {% endblock %}
 {% endblock %}
+
+{% block body_end %}
+{{ super() }}
+{% if flowchart or edit %}
+<script src="//cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
+<script src="/public/javascripts/element-edit/element-edit.js"></script>
+<link href="/public/javascripts/element-edit/element-edit.css" rel="stylesheet"></script>
+{% endif %}
+{% endblock %}

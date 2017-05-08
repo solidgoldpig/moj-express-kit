@@ -1,0 +1,73 @@
+[data-element-block].hover {
+  background-color: #ffcc99;
+}
+.element-edit {
+  position: absolute;
+  font-size: 24px;
+  margin-left: -25px;
+  margin-top: -5px;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  text-decoration: none !important;
+  background-color: #ffffff;
+  color: #005ea5 !important;
+  border-radius: 50%;
+  border: solid 1px #005ea5;
+  width: 1.75rem;
+  height: 2.75rem;
+  z-index: 99999999;
+}
+li .element-edit {
+  margin-left: -41px;
+}
+label .element-edit {
+  margin-left: -75px;
+}
+.panel .element-edit {
+  margin-left: -43px;
+}
+.panel label .element-edit {
+  margin-left: -93px;
+}
+.panel-border-wide .element-edit {
+  margin-top: -26px;
+  margin-left: -48px;
+}
+.panel-border-wide li .element-edit {
+    margin-top: 0;
+    margin-left: -67px;
+}
+button span .element-edit {
+  margin-left: -35px;
+}
+#content > a > .element-edit {
+  top: 0;
+  margin-left: -65px;
+  font-size: 32px;
+}
+.innerbox > a > .element-edit {
+  margin-top: -45px;
+}
+
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";
+  filter: alpha(opacity=20);
+}
