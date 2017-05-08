@@ -2,7 +2,7 @@ jQuery(document).ready(function(){
   jQuery('[data-element-block]').each(function(){
     var dataElementBlock = jQuery(this).closest('[data-element-block]')
     var element = dataElementBlock.attr('data-element-block') 
-    jQuery(this).prepend('<a href="/admin/element/' + element + '" target="_blank"><span class="element-edit">✎</span></a>')
+    jQuery(this).prepend('<a href="/admin/element/' + element + '" target="_blank" class="element-edit" title="' + element +'"><span>✎</span></a>')
     jQuery('.element-edit', this)
       .on('mouseover', function(){
         dataElementBlock.addClass('hover')

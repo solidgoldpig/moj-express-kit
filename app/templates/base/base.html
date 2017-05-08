@@ -72,7 +72,7 @@
 {% block content %}
 {% block breadcrumbs_content %}{% endblock %}
 {% block main_content %}
-<main>
+<main data-element-block="{{ route.id }}">
 {% block grid_content %}{{ macros.group(elements=route.elements) }}{% endblock %}
 </main>
 {% endblock %}

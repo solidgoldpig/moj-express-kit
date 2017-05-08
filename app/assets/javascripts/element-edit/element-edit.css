@@ -13,10 +13,15 @@
   color: #005ea5 !important;
   border-radius: 50%;
   border: solid 1px #005ea5;
+  opacity: 0.5;
   width: 1.75rem;
   height: 2.75rem;
   z-index: 99999999;
 }
+.element-edit:hover {
+  opacity: 1;
+}
+
 li .element-edit {
   margin-left: -41px;
 }
