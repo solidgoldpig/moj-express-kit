@@ -7,17 +7,17 @@
 {% set elements = getElementProp(name, 'elements') %}
 {% endif %}
 {% for element in elements %}
-	{% if element.type %}
-		{% if macros[element.type] %}
-		{#{% call macros[element.type](element.data) %}{% endcall %}#}
-		{{ macros[element.type](element.data) }}
-		{% else %}
-		<p>NO SUCH MACRO : {{ element.type }}:</p>
-		{% endif %}
-	{% else %}
-	{#{% call control(element) %}{% endcall %}#}
-	{{ control(element) }}
-	{% endif %}
+  {% if element.type %}
+    {% if macros[element.type] %}
+    {#{% call macros[element.type](element.data) %}{% endcall %}#}
+    {{ macros[element.type](element.data) }}
+    {% else %}
+    <p>NO SUCH MACRO : {{ element.type }}:</p>
+    {% endif %}
+  {% else %}
+  {#{% call control(element) %}{% endcall %}#}
+  {{ control(element) }}
+  {% endif %}
 {% endfor %}
 </div>
 {% endmacro %}

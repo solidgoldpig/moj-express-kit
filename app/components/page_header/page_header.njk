@@ -3,6 +3,6 @@
 {% macro page_header(name, heading='', heading_size='', lede='', start_page='') %}
 {% set defaultHeadingSize = 'xlarge' if start_page else 'large' %}
 {% set heading_size = getElementProp(name, 'heading_size', defaultHeadingSize, { value: heading_size }) %}
-	{{ blockHeading(name, size=heading_size) }}
-	{{ blockLede(name) }}
+  {{ blockHeading(name, size=heading_size) }}
+  {{ blockLede(name) }}
 {% endmacro %}
