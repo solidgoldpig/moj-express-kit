@@ -241,7 +241,7 @@ function TurnipExtension() {
         // console.log(this)
         var id = 'el' + Math.floor(Math.random() * 10000);
         var ret = new nunjucks.runtime.SafeString('<div id="' + id + '">' + url + body() +  context.ctx.woot + '</div>');
-        ret = new nunjucks.runtime.SafeString(nunjucks.renderString('<div id="{{ id }}">{{ url }} - {{ body }} , Hello {{ username }}, {{ woot }}, {{ macros.Pish() }} {{ govuk.button(text="shonk") }}</div>', Object.assign({ username: 'James', id, url, body:body() }, context.ctx)))
+        ret = new nunjucks.runtime.SafeString(nunjucks.renderString('<div id="{{ id }}">{{ url }} - {{ body }} , Hello {{ username }}, {{ woot }}, {{ Block.Pish() }} {{ govuk.button(text="shonk") }}</div>', Object.assign({ username: 'James', id, url, body:body() }, context.ctx)))
 
         return ret;
     };
@@ -254,7 +254,7 @@ nunjucksAppEnv.addExtension('TurnipExtension', new TurnipExtension());
 //   reqCtxProcessor
 // ]))
   // assetsCtxProcessor    
-nunjucksAppEnv.addGlobal('macros', {})
+nunjucksAppEnv.addGlobal('Block', {})
 nunjucksAppEnv.addGlobal('Object', Object)
 nunjucksAppEnv.addGlobal('objectAssign', (...args) => {
   // console.log('ctx', this)
