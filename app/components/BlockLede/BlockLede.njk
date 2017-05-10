@@ -1,4 +1,4 @@
-{% macro blockLede(name, lede='', lede_additional='') %}
+{% macro BlockLede(name, lede='', lede_additional='') %}
 {% set lede = getFormattedProp(name, 'lede', { value: lede }) %}
 {% set lede_additional = getFormattedProp(name, 'lede_additional', { value: lede_additional }) %}
 {% if lede %}

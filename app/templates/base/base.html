@@ -4,32 +4,32 @@
 
 
 {{ utils.addMacros([
-  "components/blockHeading/blockHeading.njk",
-  "components/blockLede/blockLede.njk",
-  "components/body/body.njk",
-  "components/checkboxGroup/checkboxGroup.njk",
-  "components/control/control.njk",
-  "components/controlLabel/controlLabel.njk",
-  "components/controlError/controlError.njk",
-  "components/dependsAria/dependsAria.njk",
-  "components/dependsHidden/dependsHidden.njk",
-  "components/fieldset/fieldset.njk",
-  "components/file/file.njk",
-  "components/formGroup/formGroup.njk",
-  "components/group/group.njk",
-  "components/input/input.njk",
-  "components/inset/inset.njk",
-  "components/notice/notice.njk",
-  "components/number/number.njk",
-  "components/optionLabel/optionLabel.njk",
-  "components/page_header/page_header.njk",
-  "components/password/password.njk",
-  "components/radioGroup/radioGroup.njk",
-  "components/raw/raw.njk",
-  "components/reveal/reveal.njk",
-  "components/string/string.njk",
-  "components/subelement/subelement.njk",
-  "components/text/text.njk"
+  "components/BlockHeading/BlockHeading.njk",
+  "components/BlockLede/BlockLede.njk",
+  "components/Body/Body.njk",
+  "components/CheckboxGroup/CheckboxGroup.njk",
+  "components/Control/Control.njk",
+  "components/ControlLabel/ControlLabel.njk",
+  "components/ControlError/ControlError.njk",
+  "components/DependsAria/DependsAria.njk",
+  "components/DependsHidden/DependsHidden.njk",
+  "components/Fieldset/Fieldset.njk",
+  "components/File/File.njk",
+  "components/FormGroup/FormGroup.njk",
+  "components/Group/Group.njk",
+  "components/Input/Input.njk",
+  "components/Inset/Inset.njk",
+  "components/Notice/Notice.njk",
+  "components/Number/Number.njk",
+  "components/OptionLabel/OptionLabel.njk",
+  "components/PageHeader/PageHeader.njk",
+  "components/Password/Password.njk",
+  "components/RadioGroup/RadioGroup.njk",
+  "components/Raw/Raw.njk",
+  "components/Reveal/Reveal.njk",
+  "components/String/String.njk",
+  "components/SubElement/SubElement.njk",
+  "components/Text/Text.njk"
 ]) }}
 
 {% block stylesheet %}
@@ -73,7 +73,7 @@
 {% block breadcrumbs_content %}{% endblock %}
 {% block main_content %}
 <main data-element-block="{{ route.id }}">
-{% block grid_content %}{{ macros.group(elements=route.elements) }}{% endblock %}
+{% block grid_content %}{{ macros.Group(elements=route.elements) }}{% endblock %}
 </main>
 {% endblock %}
 {% endblock %}

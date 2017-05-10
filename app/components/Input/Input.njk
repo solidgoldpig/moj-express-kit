@@ -1,6 +1,8 @@
-{% macro input(name, type='text') -%}
-  {% call formGroup(name, error=error) -%}
-    {{ controlLabel(name, label=label, sublabel=sublabel, hint=hint, error=error) }}
+{% from '../FormGroup/FormGroup.njk' import FormGroup with context %}
+{% from '../ControlLabel/ControlLabel.njk' import ControlLabel with context %}
+{% macro Input(name, type='text') -%}
+  {% call FormGroup(name, error=error) -%}
+    {{ ControlLabel(name, label=label, sublabel=sublabel, hint=hint, error=error) }}
     {% set value = getValue(name) %}
     {% if type === 'text' and getElementProp(name, 'multiline') %}
       <textarea class="form-control" name="{{ name }}" id="{{ name }}">{{ value | safe }}</textarea>

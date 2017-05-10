@@ -1,4 +1,4 @@
-{% macro radioGroup(name, inline='', reveals='', visually_hidden=true, or=false) %}
+{% macro RadioGroup(name, inline='', reveals='', visually_hidden=true, or=false) %}
 {% set error = getError(name) %}
 <div class="form-group{% if error %} error{% endif %}"{% if name %} data-element-block="{{name}}"{% endif %}>
 {% call fieldset(name, inline=inline) %}

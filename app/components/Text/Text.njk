@@ -1,3 +1,4 @@
-{% macro text(name, value='', error='', label='', sublabel='', hint='') -%}
-  {{ input(name) }}
+{% from '../Input/Input.njk' import Input with context %}
+{% macro Text(name, value='', error='', label='', sublabel='', hint='') -%}
+  {{ Input(name) }}
 {%- endmacro %}

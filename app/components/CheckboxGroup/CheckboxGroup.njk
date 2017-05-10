@@ -1,10 +1,13 @@
-{% macro checkboxGroup(name, inline='', label='', or=false, options='') %}
+{% from '../Fieldset/Fieldset.njk' import Fieldset with context %}
+{% from '../OptionLabel/OptionLabel.njk' import OptionLabel with context %}
+{% from '../SubElement/SubElement.njk' import SubElement with context %}
+{% macro CheckboxGroup(name, inline='', label='', or=false, options='') %}
 {% set error = getError(name) %}
 {% set inline = getElementProp(name, 'inline', { value: inline }) %}
 {% set label = getElementProp(name, 'label', { value: label }) %}
 {% set options = getElementProp(name, 'options', { value: options }) %}
 <div class="form-group{% if error %} error{% endif %}"{% if name %} data-element-block="{{name}}"{% endif %}>
-{% call fieldset(name, label=label, inline=inline) %}
+{% call Fieldset(name, label=label, inline=inline) %}
   {#% set or = getElementProp(name, 'or') %#}
   {% for option_name in options %}
     {% if option_name.value %}
@@ -32,9 +35,9 @@
     <div class="multiple-choice"{% if reveals %} data-target="reveals--{{ reveals }}"{% endif %}>
       <input id="{{ option_name }}" type="checkbox" name="{{ option_name }}" value="{{ option_value }}"{% if checked %} checked{% endif %}{% if reveals %} aria-controls="reveals--{{ reveals }}"{% endif %}>
     <label data-element-block={{option_name}} for="{{ option_name }}" class="block-label selection-button-checkbox"{% if excludes %} data-excludes="true"{% endif %}>
-      {{ optionLabel(option) }}
+      {{ OptionLabel(option) }}
     </label>
-    {{ subelement(option.subelement) }}
+    {{ SubElement(option.subelement) }}
     </div>
   {% endfor %}
 {% endcall %}

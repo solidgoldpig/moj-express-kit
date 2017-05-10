@@ -1,4 +1,6 @@
-{% macro subelement(name, closed=false) %}
+{% from '../DependsHidden/DependsHidden.njk' import DependsHidden with context %}
+{% from '../DependsAria/DependsAria.njk' import DependsAria with context %}
+{% macro SubElement(name, closed=false) %}
 {% if name %}
   {% set subdepends = checkRevealRequired(name) %}
   {% if subdepends %}
@@ -7,8 +9,8 @@
       {% set subopen = false %}
     {% endif %}
   {% endif %}
-  <div class="panel panel-border-narrow{{ dependsHidden(depends=subdepends, open=subopen) }}"{{ dependsAria(depends=subdepends, open=subopen) }}>	
-    {% call control(name, skipDependencyCheck=true) %}{% endcall %}
+  <div class="panel panel-border-narrow{{ DependsHidden(depends=subdepends, open=subopen) }}"{{ DependsAria(depends=subdepends, open=subopen) }}>	
+    {% call Control(name, skipDependencyCheck=true) %}{% endcall %}
   </div>
 {% endif %}
 {% endmacro %}

@@ -1,4 +1,4 @@
-{% macro controlError(name, error) -%}
+{% macro ControlError(name, error) -%}
 {% set error = getFormattedError(name, { error: error }) %}
 {% if error %}
 <span class="error-message" id="error-message-{{ name }}">{{ error }}</span>

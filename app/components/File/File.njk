@@ -1,3 +1,4 @@
-{% macro file(name, value='', error='') -%}
-  {{ input(name, type='file') }}
+{% from '../Input/Input.njk' import Input with context %}
+{% macro File(name, value='', error='') -%}
+  {{ Input(name, type='file') }}
 {%- endmacro %}

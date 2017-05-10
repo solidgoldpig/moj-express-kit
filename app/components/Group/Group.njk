@@ -1,8 +1,8 @@
-{% from '../blockHeading/blockHeading.njk' import blockHeading with context %}
-{% from '../control/control.njk' import control with context %}
-{% macro group(name='', heading='', elements=[]) %}
+{% from '../BlockHeading/BlockHeading.njk' import BlockHeading with context %}
+{% from '../Control/Control.njk' import Control with context %}
+{% macro Group(name='', heading='', elements=[]) %}
 <div{% if name %} data-element-block="{{name}}"{% endif %}>
-{{ blockHeading(name, heading=heading) }}
+{#{{ BlockHeading(name, heading=heading) }}#}
 {% if name %}
 {% set elements = getElementProp(name, 'elements') %}
 {% endif %}
@@ -15,8 +15,8 @@
     <p>NO SUCH MACRO : {{ element.type }}:</p>
     {% endif %}
   {% else %}
-  {#{% call control(element) %}{% endcall %}#}
-  {{ control(element) }}
+  {#{% call Control(element) %}{% endcall %}#}
+  {{ Control(element) }}
   {% endif %}
 {% endfor %}
 </div>
