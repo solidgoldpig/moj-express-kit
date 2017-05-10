@@ -23,42 +23,42 @@ Hello - {{ hello }}, woot {{woot}}, toosh {{toosh}}
 	{% endremote %#}
 	{#{ nibble('top')}#}
 
-	{{macros.Body('ermintrude')}}
+	{{Block.Body('ermintrude')}}
 
 	  {{ wibble(woot='wazaa', toosh=23) }}
 
 <form action="/" method="post" class="form">
-{{ macros.Text('wham', error='Ay Caramba!', value='Ay wahey!') }}
-{{ macros.Control('wham', error='Caramba!', value='wahey!') }}
-{{ macros.Control('wham', label='Muy Labelo!', hint='A truly useful hint!') }}
-{{ macros.Password('spliffing', error='Ay Caramba!', value='Ay wahey!') }}
-{{ macros.Control('wham', type='password', error='Caramba!', value='wahey!') }}
+{{ Block.Text('wham', error='Ay Caramba!', value='Ay wahey!') }}
+{{ Block.Control('wham', error='Caramba!', value='wahey!') }}
+{{ Block.Control('wham', label='Muy Labelo!', hint='A truly useful hint!') }}
+{{ Block.Password('spliffing', error='Ay Caramba!', value='Ay wahey!') }}
+{{ Block.Control('wham', type='password', error='Caramba!', value='wahey!') }}
 
 
-{{ macros.RadioGroup('housing-act') }}
-{{ macros.RadioGroup('twosh') }}
-	{{ macros.CheckboxGroup('nationality') }}
+{{ Block.RadioGroup('housing-act') }}
+{{ Block.RadioGroup('twosh') }}
+	{{ Block.CheckboxGroup('nationality') }}
 
 {#
-{{ macros.Control('wham', type='password') }}
-{{ macros.Control('wham', type='number') }}
-{{ macros.Control('wham', type='file') }}
+{{ Block.Control('wham', type='password') }}
+{{ Block.Control('wham', type='number') }}
+{{ Block.Control('wham', type='file') }}
 
 
-	{{ macros.Text('wham') }}
+	{{ Block.Text('wham') }}
 	
-	{{ macros.Number('wham') }}
-	{{ macros.File('wham') }}
-	{{ macros.Input('foo', value='bar') }}
-	{{ macros.Password('pass', value='password') }}
-	{{ macros.RadioGroup('housing-act') }}
-	{{ macros.RadioGroup('twosh') }}
-	{{ macros.RadioGroup('gash', inline=false, or=true) }}
-	{{ macros.CheckboxGroup('nationality') }}
-	{{ macros.Control('foo', value='kooool') }}
-	{{ macros.Input('foo', value='whammo') }}
+	{{ Block.Number('wham') }}
+	{{ Block.File('wham') }}
+	{{ Block.Input('foo', value='bar') }}
+	{{ Block.Password('pass', value='password') }}
+	{{ Block.RadioGroup('housing-act') }}
+	{{ Block.RadioGroup('twosh') }}
+	{{ Block.RadioGroup('gash', inline=false, or=true) }}
+	{{ Block.CheckboxGroup('nationality') }}
+	{{ Block.Control('foo', value='kooool') }}
+	{{ Block.Input('foo', value='whammo') }}
 	{% set controlType = 'Input' %}
-	{{ macros[controlType]('foo', value='blammo') }}
+	{{ Block[controlType]('foo', value='blammo') }}
 #}
 </form>
 

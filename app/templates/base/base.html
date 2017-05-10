@@ -1,9 +1,9 @@
 {% extends "templates/govuk_template.njk" %}
 
-{% import "components/utils.njk" as utils with context %}
+{% import "components/Utils/Utils.njk" as Utils with context %}
 
 
-{{ utils.addMacros([
+{{ Utils.addBlock([
   "components/BlockHeading/BlockHeading.njk",
   "components/BlockLede/BlockLede.njk",
   "components/Body/Body.njk",
@@ -73,7 +73,7 @@
 {% block breadcrumbs_content %}{% endblock %}
 {% block main_content %}
 <main data-element-block="{{ route.id }}">
-{% block grid_content %}{{ macros.Group(elements=route.elements) }}{% endblock %}
+{% block grid_content %}{{ Block.Group(elements=route.elements) }}{% endblock %}
 </main>
 {% endblock %}
 {% endblock %}

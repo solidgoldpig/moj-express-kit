@@ -8,9 +8,9 @@
 {% endif %}
 {% for element in elements %}
   {% if element.type %}
-    {% if macros[element.type] %}
-    {#{% call macros[element.type](element.data) %}{% endcall %}#}
-    {{ macros[element.type](element.data) }}
+    {% if Block[element.type] %}
+    {#{% call Block[element.type](element.data) %}{% endcall %}#}
+    {{ Block[element.type](element.data) }}
     {% else %}
     <p>NO SUCH MACRO : {{ element.type }}:</p>
     {% endif %}

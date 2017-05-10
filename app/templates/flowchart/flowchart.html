@@ -11,8 +11,8 @@ Wizard flow - Prototype
 <div class="innerbox" data-element-block="{{stepRoute.id}}">
 {% set stepRoute = routesFlattened[route.wizard] %}
 <p class="routeKey">{{stepRoute.id}}</p>
-{{ macros.page_header(stepRoute.id, start_page=stepRoute.start_page) }}
-{{ macros.group(elements=stepRoute.elements) }}
+{{ Block.PageHeader(stepRoute.id, start_page=stepRoute.start_page) }}
+{{ Block.Group(elements=stepRoute.elements) }}
 </div>
 </div>
 {% for step in wizard.stepsFlat %}
@@ -38,8 +38,8 @@ Wizard flow - Prototype
 <div class="box{% if depends %} depends{% endif %}" id="{{ stepRoute.key }}">
 <div class="innerbox" data-element-block="{{stepRoute.id}}">
 <p class="routeKey">{{stepRoute.id}}</p>
-{{ macros.page_header(stepRoute.id, start_page=stepRoute.start_page) }}
-{{ macros.group(elements=stepRoute.elements) }}
+{{ Block.PageHeader(stepRoute.id, start_page=stepRoute.start_page) }}
+{{ Block.Group(elements=stepRoute.elements) }}
 </div>
 </div>
 {% endif %}
@@ -53,7 +53,7 @@ Wizard flow - Prototype
 {% if not loop.last and stepRoute.elements %}
 <div class="gutter-action"></div>
 <div class="action">
-{% if getElement('action:'+step) %}{{ macros.ap_action('action:'+step) }}{% endif %}
+{% if getElement('action:'+step) %}{{ Block.ApAction('action:'+step) }}{% endif %}
 </div>
 {% endif %}
 {% endfor %}

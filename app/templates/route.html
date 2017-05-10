@@ -16,7 +16,7 @@
   <!--<p class="service-name">SERVICE-NAME</p>-->
 {% if flags.backbutton %}
 {% if app.wizard.steps.count > 1 and route.template != 'step-by-step' %}
-<a class="link-back" href="{{ getRouteUrl(wizard.stepsFlat[app.wizard.steps.count - 1]) }}">{{ macros.string('string:link-back') }}</a>
+<a class="link-back" href="{{ getRouteUrl(wizard.stepsFlat[app.wizard.steps.count - 1]) }}">{{ Block.String('string:link-back') }}</a>
 {% endif %}
 {% endif %}
   {% block grid_content %}
@@ -26,14 +26,14 @@
 {% block main_content %}
 {% if app.wizard.steps.count %}
 {% if flags.questioncount %}
-{{ macros.string('string:question-count') }}
+{{ Block.String('string:question-count') }}
 {% endif %}
 {% if flags.remaining %}
-{{ macros.string('string:questions-remaining') }}
+{{ Block.String('string:questions-remaining') }}
 {% endif %}
 {% if flags.section or flags.section_current %}
 <p class="wizard-section">{% if flags.section %}{{ getFormattedProp(route.hierarchy[1], 'heading') | safe }}{% endif %}
-{% if flags.section_current %}{% if flags.section %} - {% endif %}{{ macros.string('string:wizard-section-current') }}{% endif %}
+{% if flags.section_current %}{% if flags.section %} - {% endif %}{{ Block.String('string:wizard-section-current') }}{% endif %}
 </p>
 {% endif %}
 {% endif %}
@@ -63,12 +63,12 @@
 
 </div>
       {% endif %}
-			{{ macros.page_header(route.id, start_page=route.start_page) }}
+			{{ Block.PageHeader(route.id, start_page=route.start_page) }}
 
 
 			<form action="{{ req.originalUrl }}" method="post" class="form">
 				<input type="hidden" name="updateForm">
-        {{ macros.group(elements=route.elements) }}
+        {{ Block.Group(elements=route.elements) }}
         {% block content_actions %}{% endblock %}
 			</form>
 

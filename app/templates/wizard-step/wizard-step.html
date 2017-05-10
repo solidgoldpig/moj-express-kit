@@ -2,6 +2,6 @@
 
 {% block content_actions %}
 <div class="action-buttons">
-  <p><button class="button next validation-submit" type="submit">{{ macros.string('string:continue-button') }}</button>{% if app.wizard.steps.length %} {{ getString('string:or') }} <button class="link-skip">{{ macros.string('string:skip-button') }}</button>{% endif %}</p>
+  <p><button class="button next validation-submit" type="submit">{{ Block.String('string:continue-button') }}</button>{% if app.wizard.steps.length %} {{ getString('string:or') }} <button class="link-skip">{{ Block.String('string:skip-button') }}</button>{% endif %}</p>
 </div>
 {% endblock %}

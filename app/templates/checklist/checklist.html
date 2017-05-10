@@ -115,19 +115,19 @@
 </style>
 
 <div class="checklist-progress{% if autofields.progress.complete %} progress-complete{% endif %}">
-<h2 class="progress-heading">{{ macros.string('string:checklist-progress-heading') }}</h2>
+<h2 class="progress-heading">{{ Block.String('string:checklist-progress-heading') }}</h2>
 {% if autofields.progress.done === 900 %}
-<p class="progress"><span class="progress-intro">{{ macros.string('string:checklist-actions-start') }}</span></p>
+<p class="progress"><span class="progress-intro">{{ Block.String('string:checklist-actions-start') }}</span></p>
 {% else %}
-<p class="progress"><i class="progress-bar" style="height:{{ autofields.progress.percentage }}%;"></i><span class="data bold-xxlarge">{{ autofields.progress.done }}/{{ autofields.progress.count }}</span> {{ macros.string('string:checklist-actions-complete') }}</p>
+<p class="progress"><i class="progress-bar" style="height:{{ autofields.progress.percentage }}%;"></i><span class="data bold-xxlarge">{{ autofields.progress.done }}/{{ autofields.progress.count }}</span> {{ Block.String('string:checklist-actions-complete') }}</p>
 {% endif %}
 
-<h2 class="goal-heading"><span>{{ macros.string('string:checklist-goal-heading') }}</span></h2>
-<p class="goal">{{ macros.string('string:checklist-goal') }}</p>
+<h2 class="goal-heading"><span>{{ Block.String('string:checklist-goal-heading') }}</span></h2>
+<p class="goal">{{ Block.String('string:checklist-goal') }}</p>
 
 </div>
 
-{{ macros.relatednav() }}
+{{ Block.RelatedNav() }}
 
 
 {% endblock %}
