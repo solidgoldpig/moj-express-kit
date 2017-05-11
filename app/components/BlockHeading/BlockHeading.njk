@@ -8,7 +8,7 @@
 } %}
 {% set heading = getFormattedProp(name, 'heading', { value: heading }) %}
 {% if heading %}
-{% set size = getElementProp(name, 'size', { value: size, defaultValue: 'medium' } ) %}
+{% set size = getBlockProp(name, 'size', { value: size, defaultValue: 'medium' } ) %}
   <{{ sizes[size] }} class="gv-u-heading-{{ size }} heading-{{ size }}">{{ heading | safe }}</{{ sizes[size] }}>
 {% endif %}
 {%- endmacro %}

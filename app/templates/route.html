@@ -1,8 +1,8 @@
-{% extends "templates/layout_elements.html" %}
+{% extends "templates/layout_blocks.html" %}
 
 {% block head %}
 <link href="/public/stylesheets/application.css" rel="stylesheet">
-<link href="/public/stylesheets/elements.css" rel="stylesheet">
+<link href="/public/stylesheets/blocks.css" rel="stylesheet">
 {% include "head/main_style.css" %}
 {% endblock %}
 
@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block content %}
-<main id="content" role="main" class="route-{{ route.id }}{% if route.template %} route-{{ route.template }}{% endif %}{% if route.start_page %} wizard-start{% endif %}{% if route.wizardlastRoute %} wizard-last{% endif %}{% if edit %} route-edit{% endif %} {% block content_class %}{% endblock %}" data-element-block="{{ route.id }}">
+<main id="content" role="main" class="route-{{ route.id }}{% if route.template %} route-{{ route.template }}{% endif %}{% if route.start_page %} wizard-start{% endif %}{% if route.wizardlastRoute %} wizard-last{% endif %}{% if edit %} route-edit{% endif %} {% block content_class %}{% endblock %}" data-block-name="{{ route.id }}">
   <!--<p class="service-name">SERVICE-NAME</p>-->
 {% if flags.backbutton %}
 {% if app.wizard.steps.count > 1 and route.template != 'step-by-step' %}
@@ -68,7 +68,7 @@
 
 			<form action="{{ req.originalUrl }}" method="post" class="form">
 				<input type="hidden" name="updateForm">
-        {{ Block.Group(elements=route.elements) }}
+        {{ Block.Group(blocks=route.blocks) }}
         {% block content_actions %}{% endblock %}
 			</form>
 

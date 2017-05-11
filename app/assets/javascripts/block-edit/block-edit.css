@@ -1,7 +1,7 @@
-[data-element-block].hover {
+[data-block-name].hover {
   background-color: #ffcc99;
 }
-.element-edit {
+.block-edit {
   position: absolute;
   font-size: 24px;
   margin-left: -25px;
@@ -18,37 +18,37 @@
   height: 2.75rem;
   z-index: 99999999;
 }
-.element-edit:hover {
+.block-edit:hover {
   opacity: 1;
 }
 
-li .element-edit {
+li .block-edit {
   margin-left: -41px;
 }
-label .element-edit {
+label .block-edit {
   margin-left: -75px;
 }
-.panel .element-edit {
+.panel .block-edit {
   margin-left: -43px;
 }
-.panel label .element-edit {
+.panel label .block-edit {
   margin-left: -93px;
 }
-.panel-border-wide .element-edit {
+.panel-border-wide .block-edit {
   margin-top: -26px;
   margin-left: -48px;
 }
-.panel-border-wide li .element-edit {
+.panel-border-wide li .block-edit {
     margin-top: 0;
     margin-left: -67px;
 }
-button span .element-edit {
+button span .block-edit {
   margin-left: -35px;
 }
 
 
 
-main > .element-edit {
+main > .block-edit {
   top: 0.25rem;
   margin-top: 0;
   margin-left: -4.5rem;

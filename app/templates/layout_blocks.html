@@ -4,9 +4,9 @@
 {% endif %}
 
 {% if mergeObjects %}
-{% import "Block/elements.nunjucks" as elementBlock %}
-{% import "Block/custom_elements.nunjucks" as customElementBlock %}
-{% set elementBlock = mergeObjects(elementBlock, customElementBlock) %}
+{% import "Block/blocks.nunjucks" as blockBlock %}
+{% import "Block/custom_blocks.nunjucks" as customBlockBlock %}
+{% set blockBlock = mergeObjects(blockBlock, customBlockBlock) %}
 {% endif %}
 {% extends layout %}
 

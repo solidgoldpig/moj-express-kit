@@ -1,6 +1,6 @@
 {% from '../DependsHidden/DependsHidden.njk' import DependsHidden with context %}
 {% from '../DependsAria/DependsAria.njk' import DependsAria with context %}
-{% macro SubElement(name, closed=false) %}
+{% macro SubBlock(name, closed=false) %}
 {% if name %}
   {% set subdepends = checkRevealRequired(name) %}
   {% if subdepends %}

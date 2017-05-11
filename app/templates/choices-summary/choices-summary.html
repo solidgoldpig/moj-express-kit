@@ -35,7 +35,7 @@ table + form .button {
 {% for step in wizard.stepsFlat %}
 {% set stepRoute = routesFlattened[step] %}
 {% if not loop.last %}
-  {% for el in stepRoute.elements %}
+  {% for el in stepRoute.blocks %}
 {% if checkNoDependency(el) %}
   {% set label = getFormattedProp(el, 'label') %}
   {% set value = getDisplayValue(el, '<br>') %}

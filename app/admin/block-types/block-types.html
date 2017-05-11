@@ -1,16 +1,16 @@
 {% extends 'admin/admin-base/admin-base.html' %}
 
 {% block page_title %}
-Element types - Prototype
+Block types - Prototype
 {% endblock %}
 
 {% block admin_content %}
-<h1 class="heading-large">Element types</h1>
+<h1 class="heading-large">Block types</h1>
 
 <ul class="list list-bullet">
 {% for _blockType in blockTypes %}
 {% if _blockType %}
-<li><a href="/admin/elements/{{ _blockType }}">{{ _blockType }}</a></li>
+<li><a href="/admin/blocks/{{ _blockType }}">{{ _blockType }}</a></li>
 {% endif %}
 {% endfor %}
 </ul>

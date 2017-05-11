@@ -1,11 +1,11 @@
 {% from '../ControlError/ControlError.njk' import ControlError with context %}
 {% from '../Group/Group.njk' import Group with context %}
-{% macro Fieldset(name, label='', sublabel='', inline='', elements='', group='', visually_hidden=true, error='') %}
+{% macro Fieldset(name, label='', sublabel='', inline='', blocks='', group='', visually_hidden=true, error='') %}
 {% set label = getFormattedProp(name, 'label', { value: label }) %}
 {% set sublabel = getFormattedProp(name, 'sublabel', { value: sublabel }) %}
-{% set inline = getElementProp(name, 'inline', { value: inline }) %}
-{% if not elements and getElementProp(name, 'elements') %}
-{% set elements = getElementProp(name, 'elements') %}
+{% set inline = getBlockProp(name, 'inline', { value: inline }) %}
+{% if not blocks and getBlockProp(name, 'blocks') %}
+{% set blocks = getBlockProp(name, 'blocks') %}
 {% endif %}
   {#<h2 class="heading-small">{{ label | safe }}</h2>#}
   {#{% if sublabel %}
@@ -27,8 +27,8 @@
   {% if caller %}
     {{ caller() }}
   {% endif %}
-  {% if elements %}
-    {{ Group(elements=elements) }}
+  {% if blocks %}
+    {{ Group(blocks=blocks) }}
   {% endif %}
   </fieldset>
 {% endmacro %}

@@ -29,7 +29,7 @@
   "components/Reveal/Reveal.njk",
   "components/Section/Section.njk",
   "components/String/String.njk",
-  "components/SubElement/SubElement.njk",
+  "components/SubBlock/SubBlock.njk",
   "components/Text/Text.njk"
 ]) }}
 
@@ -73,8 +73,8 @@
 {% block content %}
 {% block breadcrumbs_content %}{% endblock %}
 {% block main_content %}
-<main data-element-block="{{ route.id }}">
-{% block grid_content %}{{ Block.Group(elements=route.elements) }}{% endblock %}
+<main data-block-name="{{ route.id }}">
+{% block grid_content %}{{ Block.Group(blocks=route.blocks) }}{% endblock %}
 </main>
 {% endblock %}
 {% endblock %}
@@ -83,7 +83,7 @@
 {{ super() }}
 {% if flowchart or edit %}
 <script src="//cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.js"></script>
-<script src="/public/javascripts/element-edit/element-edit.js"></script>
-<link href="/public/javascripts/element-edit/element-edit.css" rel="stylesheet"></script>
+<script src="/public/javascripts/block-edit/block-edit.js"></script>
+<link href="/public/javascripts/block-edit/block-edit.css" rel="stylesheet"></script>
 {% endif %}
 {% endblock %}

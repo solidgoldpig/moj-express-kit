@@ -13,9 +13,9 @@
   {% if lede_additional %}
   {{lede_additional | safe }}
   {% endif %}
-  {% if route.elements %}
+  {% if route.blocks %}
   <div class="gv-s-prose">
-  {{ Block.Group(elements=route.elements) }}
+  {{ Block.Group(blocks=route.blocks) }}
   </div>
   {% endif %}
   {% block grid_content_extra %}{% endblock %}

@@ -1,5 +1,5 @@
 {% macro Inset(name) %}
-<div class="panel panel-border-wide"{% if name %} data-element-block="{{name}}"{% endif %}>
+<div class="panel panel-border-wide"{% if name %} data-block-name="{{name}}"{% endif %}>
   {{ getFormattedBody(name, 'body') | safe }}
 </div>
 {% endmacro %}

@@ -1,24 +1,24 @@
 {% extends 'admin/admin-base/admin-base.html' %}
 
 {% block page_title %}
-Element - Proto_blockType
+Block - Proto_blockType
 {% endblock %}
 
 {% block admin_content %}
-{% set _blockType = getElementProp(element, '_blockType') %}
-<p><a class="link-back" href="/admin/elements/{{ _blockType }}">Back to {{ _blockType }}</a></p>
+{% set _blockType = getBlockProp(block, '_blockType') %}
+<p><a class="link-back" href="/admin/blocks/{{ _blockType }}">Back to {{ _blockType }}</a></p>
 
-<h1 class="heading-large">Element - {{ element }}</h1>
+<h1 class="heading-large">Block - {{ block }}</h1>
 
 <form method="post">
-<textarea name="element" id="element" cols="80" rows="20">{{elementJSON | safe}}</textarea>
-<p><button class="button">Update element</button></p>
+<textarea name="block" id="block" cols="80" rows="20">{{blockJSON | safe}}</textarea>
+<p><button class="button">Update block</button></p>
 </form>
 
 {% if stringProps.length %}
 <ul class="list list-bullet">
 {% for prop in stringProps %}
-<li><a href="/admin/element/{{ element }}/{{ prop }}">{{ prop }}</a></li>
+<li><a href="/admin/block/{{ block }}/{{ prop }}">{{ prop }}</a></li>
 {% endfor %}
 </ul>
 {% endif %}

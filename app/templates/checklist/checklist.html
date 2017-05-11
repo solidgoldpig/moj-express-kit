@@ -4,10 +4,10 @@
 
 <style type="text/css">
 
-.ap_action_tools li .element-edit{
+.ap_action_tools li .block-edit{
   margin-left: -72px;
 }
-.actions button .element-edit {
+.actions button .block-edit {
   margin-left: -56px;
 }
 
@@ -142,7 +142,7 @@ if (window.localStorage) {
   var el = localStorage.getItem('el')
   var offset = localStorage.getItem('offset')
   if (el) {
-    var $el = jQuery('[data-element-block="' + el + '"]')
+    var $el = jQuery('[data-block-name="' + el + '"]')
     if ($el.offset()) {
       var new_offset = $el.offset().top - offset
       doc.scrollTop(new_offset)
@@ -161,10 +161,10 @@ if (window.localStorage) {
       if (offset_current) {
         $next_action = $current_action
       } else {
-        var action = $current_action.attr('data-element-block')
+        var action = $current_action.attr('data-block-name')
         var $actions = jQuery('.ap_action')
         $actions.each(function(index){
-          if (jQuery(this).attr('data-element-block') === action) {
+          if (jQuery(this).attr('data-block-name') === action) {
             $next_action = $actions.eq(index + 1)
           }
         })
@@ -174,7 +174,7 @@ if (window.localStorage) {
       }
 
       if ($next_action.length) {
-        setScrolled($next_action.attr('data-element-block'), $next_action.offset().top - doc.scrollTop())
+        setScrolled($next_action.attr('data-block-name'), $next_action.offset().top - doc.scrollTop())
       }
     })
 }
