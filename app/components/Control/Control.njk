@@ -1,8 +1,8 @@
-{% macro Control(name, type='', value='', error='', label='', sublabel='', hint='', heading='', inline='', depth=2) -%}
+{% macro Control(name, _blockType='', value='', error='', label='', sublabel='', hint='', heading='', inline='', depth=2) -%}
 {% if checkNoDependency(name, true) %}
-{% set type = getElementProp(name, 'type', 'text', { value: type }) %}
-{% if Block[type] %}
-{{ Block[type](name, value=value, error=error, label=label, sublabel=sublabel, hint=hint, heading=heading, inline=inline, depth=depth) }}
-{% else %}<p>NO SUCH MACRO :{{ type }}:</p>{% endif %}
+{% set _blockType = getElementProp(name, '_blockType', 'text', { value: _blockType }) %}
+{% if Block[_blockType] %}
+{{ Block[_blockType](name, value=value, error=error, label=label, sublabel=sublabel, hint=hint, heading=heading, inline=inline, depth=depth) }}
+{% else %}<p>NO SUCH MACRO :{{ _blockType }}:</p>{% endif %}
 {% endif %}
 {%- endmacro %}

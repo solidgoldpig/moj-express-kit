@@ -5,12 +5,12 @@ String - Prototype
 {% endblock %}
 
 {% block admin_content %}
-{% if not type %}
-{% set type = getElementProp(element, 'type') %}
+{% if not _blockType %}
+{% set _blockType = getElementProp(element, '_blockType') %}
 {% endif %}
-<p><a class="link-back" href="/admin/elements/{{ type }}">Back to {{ type }}</a></p>
+<p><a class="link-back" href="/admin/elements/{{ _blockType }}">Back to {{ _blockType }}</a></p>
 
-<h1 class="heading-large">{{ type }}{% if prop %}.{{ prop }}{% endif %} - {{ element }}</h1>
+<h1 class="heading-large">{{ _blockType }}{% if prop %}.{{ prop }}{% endif %} - {{ element }}</h1>
 
 {% if doesNotExist %}
 <p>{{ element }} doesn't exist yet</p>

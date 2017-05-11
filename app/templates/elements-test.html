@@ -40,9 +40,9 @@ Hello - {{ hello }}, woot {{woot}}, toosh {{toosh}}
 	{{ Block.CheckboxGroup('nationality') }}
 
 {#
-{{ Block.Control('wham', type='password') }}
-{{ Block.Control('wham', type='number') }}
-{{ Block.Control('wham', type='file') }}
+{{ Block.Control('wham', _blockType='password') }}
+{{ Block.Control('wham', _blockType='number') }}
+{{ Block.Control('wham', _blockType='file') }}
 
 
 	{{ Block.Text('wham') }}

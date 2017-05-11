@@ -8,9 +8,9 @@ Element types - Prototype
 <h1 class="heading-large">Element types</h1>
 
 <ul class="list list-bullet">
-{% for type in types %}
-{% if type %}
-<li><a href="/admin/elements/{{ type }}">{{ type }}</a></li>
+{% for _blockType in blockTypes %}
+{% if _blockType %}
+<li><a href="/admin/elements/{{ _blockType }}">{{ _blockType }}</a></li>
 {% endif %}
 {% endfor %}
 </ul>

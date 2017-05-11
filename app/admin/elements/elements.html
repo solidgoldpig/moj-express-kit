@@ -6,14 +6,14 @@ Elements - Prototype
 
 {% block admin_content %}
 <p><a class="link-back" href="/admin/elements">Back to element types</a></p>
-<h1 class="heading-large">{{ type }} elements</h1>
+<h1 class="heading-large">{{ _blockType }} elements</h1>
 
 <ul class="list list-bullet">
 {% for key in keys %}
 <li><a href="/admin/element/{{ key }}">{{ key }}</a></li>
 {% endfor %}
 </ul>
-{% if type === 'routes' %}
+{% if _blockType === 'Routes' %}
 <p><a href="/admin/routes">View route entrypoints</a></p>
 {% endif %}
 

@@ -1,12 +1,12 @@
 {% extends 'admin/admin-base/admin-base.html' %}
 
 {% block page_title %}
-Element - Prototype
+Element - Proto_blockType
 {% endblock %}
 
 {% block admin_content %}
-{% set type = getElementProp(element, 'type') %}
-<p><a class="link-back" href="/admin/elements/{{ type }}">Back to {{ type }}</a></p>
+{% set _blockType = getElementProp(element, '_blockType') %}
+<p><a class="link-back" href="/admin/elements/{{ _blockType }}">Back to {{ _blockType }}</a></p>
 
 <h1 class="heading-large">Element - {{ element }}</h1>
 
