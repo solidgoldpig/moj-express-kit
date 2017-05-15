@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const glob = require('glob-promise')
 const path = require('path')
 const fs = require('fs')
