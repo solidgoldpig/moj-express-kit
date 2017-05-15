@@ -1,8 +1,8 @@
+#!/usr/bin/env node
 const path = require('path')
 const CLIEngine = require('eslint').CLIEngine
 
 const configFile = path.join(__dirname, '..', '.eslintrc.js')
-
 module.exports = (options = {}) => {
   options.configFile = options.configFile || configFile
 
