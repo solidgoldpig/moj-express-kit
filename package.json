@@ -1,7 +1,7 @@
 {
   "name": "moj-express-kit",
   "version": "0.0.1",
-  "main": "server.js",
+  "main": "lib/server.js",
   "repository": {},
   "license": "MIT",
   "dependencies": {
@@ -70,7 +70,9 @@
     "preinstall": "if [ -d .git ] && [ -x \"$(command -v git)\" ]; then npm run githooks; else echo 'git not installed'; fi;",
     "postcssmv": "postcss -c postcss.config.js ../overhaul/app/css/*.pcss --dir ../overhaul/public/stylesheets && find ../overhaul/public/stylesheets -name *.pcss | sed -e 'p;s/\\.pcss$/.css/' | xargs -n2 mv",
     "postcss": "postcss -c postcss.config.js $APPDIR/app/css/*.css --dir $APPDIR/public/stylesheets",
-    "test:unit": "echo no unit tests set up",
+    "test:unit": "ava --verbose scripts/**/*.unit.spec.js lib/**/*.unit.spec.js",
+    "test:docker": "echo no docker test set up",
+    "test:docker:cleanup": "echo no docker test cleanup set up",
     "watchpostcss": "yarn postcss -- --watch"
   }
 }
