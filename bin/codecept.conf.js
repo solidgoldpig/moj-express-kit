@@ -20,21 +20,26 @@ const seleniumUrl = `${seleniumProtocol}://${seleniumIp}:${seleniumPort}`
 
 console.log('Codecept config', {baseUrl, seleniumUrl})
 
-exports.config = {
-  'tests': 'spec/functional/*.functional.spec.js',
-  'timeout': 10000,
-  'output': './reports',
-  'helpers': {
-    'WebDriverIO': {
-      'url': baseUrl,
-      'browser': 'firefox',
-      'protocol': seleniumProtocol,
-      'host': seleniumIp,
-      'port': seleniumPort,
-      'path': '/wd/hub'
+const tests = process.env.tests || `spec/functional/*.functional.spec.js`
+const output = process.env.output || `reports`
+
+const config = {
+  tests,
+  timeout: 10000,
+  output,
+  helpers: {
+    WebDriverIO: {
+      url: baseUrl,
+      browser: 'firefox',
+      protocol: seleniumProtocol,
+      host: seleniumIp,
+      port: seleniumPort,
+      path: '/wd/hub'
     }
   },
-  'bootstrap': false,
-  'mocha': {},
-  'name': 'moj-express-kit'
+  bootstrap: false,
+  mocha: {},
+  name: 'moj-express-kit'
 }
+
+exports.config = config
