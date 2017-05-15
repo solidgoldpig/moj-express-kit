@@ -193,7 +193,6 @@ var appViews = [
   path.join(appDir, 'app'),
   path.join(kitDir, 'app'),
   path.join(appDir, 'node_modules', 'govuk_frontend_alpha'),
-  // why components too?
   path.join(appDir, 'node_modules', 'govuk_frontend_alpha', 'components')
 ]
 // app.set('views', appViews)

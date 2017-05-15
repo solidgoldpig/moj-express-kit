@@ -10,7 +10,10 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
+    "glob": "^7.1.1",
+    "glob-promise": "^3.1.0",
     "govuk_frontend_alpha": "https://github.com/alphagov/govuk_frontend_alpha/releases/download/0.0.1-alpha/govuk_frontend_alpha-0.0.1-npm.tgz",
+    "jsonlint": "^1.6.2",
     "jsonschema": "^1.1.1",
     "lodash": "^4.17.4",
     "markdown": "^0.5.0",
@@ -29,9 +32,13 @@
     "request": "^2.81.0",
     "request-promise-native": "^1.0.3",
     "serve-favicon": "^2.4.2",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "stylelint": "^7.10.1",
+    "stylelint-config-standard": "^16.0.0"
   },
   "scripts": {
+    "hello": "echo hello",
+    "lint:data": "find $APPDIR/metadata/**/*.json | xargs -P 20 -L 1 jsonlint -q",
     "postcssmv": "postcss -c postcss.config.js ../overhaul/app/css/*.pcss --dir ../overhaul/public/stylesheets && find ../overhaul/public/stylesheets -name *.pcss | sed -e 'p;s/\\.pcss$/.css/' | xargs -n2 mv",
     "postcss": "postcss -c postcss.config.js $APPDIR/app/css/*.css --dir $APPDIR/public/stylesheets",
     "watchpostcss": "yarn postcss -- --watch"
