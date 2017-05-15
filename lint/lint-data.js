@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const glob = require('glob-promise')
-const path = require('path')
 const fs = require('fs')
 
 const jsonlint = require('jsonlint')
@@ -9,13 +8,17 @@ const jsonlint = require('jsonlint')
 const appDir = process.cwd()
 
 const errors = []
-const reportError = msg => {
+const reportError = (msg) => {
   errors.push(msg)
 }
 
-const testJSON = (file, options={}) => {
+const testJSON = (file, options = {}) => {
   return new Promise((resolve, reject) => {
     fs.readFile(file, {encoding: 'utf8'}, (err, jsonContent) => {
+      if (err) {
+        reportError(`Could not open file - ${file}`)
+        resolve()
+      }
       try {
         jsonlint.parse(jsonContent)
         if (options._id) {

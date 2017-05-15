@@ -1,7 +1,7 @@
-function unsetCheckbox(inputs) {
+function unsetCheckbox (inputs) {
   inputs.prop('checked', false)
   inputs.closest('label').removeClass('selected')
-  inputs.each(function(input) {
+  inputs.each(function (input) {
     var $input = jQuery(inputs[input])
     if ($input.attr('aria-expanded')) {
       $input.attr('aria-expanded', false)
@@ -10,16 +10,16 @@ function unsetCheckbox(inputs) {
     }
   })
 }
-jQuery(document).ready(function(){
+jQuery(document).ready(function () {
   jQuery('[data-excludes]').prev('input')
     .attr('data-excludes-input', true)
-    .on('change', function(){
+    .on('change', function () {
       if (this.checked) {
         var inputs = jQuery(this).closest('fieldset').find('> .multiple-choice > input').not(this)
         unsetCheckbox(inputs)
       }
     })
-    .closest('fieldset').find('> .multiple-choice > input').not('[data-excludes-input]').on('change', function(){
+    .closest('fieldset').find('> .multiple-choice > input').not('[data-excludes-input]').on('change', function () {
       if (this.checked) {
         var inputs = jQuery(this).closest('fieldset').find('[data-excludes-input]')
         unsetCheckbox(inputs)

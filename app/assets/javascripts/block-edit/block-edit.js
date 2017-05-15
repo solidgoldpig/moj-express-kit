@@ -1,20 +1,20 @@
-jQuery(document).ready(function(){
-  jQuery('[data-block-name]').each(function(){
+jQuery(document).ready(function () {
+  jQuery('[data-block-name]').each(function () {
     var dataBlockEdit = jQuery(this).closest('[data-block-name]')
-    var block = dataBlockEdit.attr('data-block-name') 
-    jQuery(this).prepend('<a href="/admin/block/' + block + '" target="_blank" class="block-edit" title="' + block +'"><span>✎</span></a>')
+    var block = dataBlockEdit.attr('data-block-name')
+    jQuery(this).prepend('<a href="/admin/block/' + block + '" target="_blank" class="block-edit" title="' + block + '"><span>✎</span></a>')
     jQuery('.block-edit', this)
-      .on('mouseover', function(){
+      .on('mouseover', function () {
         dataBlockEdit.addClass('hover')
       })
-      .on('mouseout', function(){
+      .on('mouseout', function () {
         dataBlockEdit.removeClass('hover')
       })
-      .on('click', function(e){
+      .on('click', function (e) {
         e.stopPropagation()
         e.preventDefault()
         var $link = jQuery(this).closest('a')
-        window.open($link.attr('href'), $link.attr('target'));
+        window.open($link.attr('href'), $link.attr('target'))
       })
   })
 })

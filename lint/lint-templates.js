@@ -1,13 +1,12 @@
 #!/usr/bin/env node
 
 const glob = require('glob-promise')
-const path = require('path')
 const fs = require('fs')
 
 const nunjucks = require('nunjucks')
 
 const appDir = process.cwd()
-const kitDir = __dirname
+// const kitDir = __dirname
 
 const errors = []
 const reportError = msg => {
@@ -16,11 +15,15 @@ const reportError = msg => {
 
 const srcPaths = [`${appDir}/app/components/**/*.njk`, `${appDir}/app/templates/**/*.html`]
 
-const testNunjucks = (file, options={}) => {
+const testNunjucks = (file, options = {}) => {
   return new Promise((resolve, reject) => {
     fs.readFile(file, {encoding: 'utf8'}, (err, fileContent) => {
+      if (err) {
+        reportError(`Could not open file - ${file}`)
+        resolve()
+      }
       try {
-        let parsed = nunjucks.parser.parse(fileContent)
+        nunjucks.parser.parse(fileContent)
       } catch (e) {
         reportError(['Line', e.lineno, 'Col', e.colno, file, '\n', e.toString()].join(' '))
       }

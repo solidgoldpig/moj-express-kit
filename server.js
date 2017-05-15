@@ -1,4 +1,3 @@
-const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const nunjucks = require('nunjucks')
@@ -18,14 +17,13 @@ const auth = require('./lib/auth')
 const appDir = process.cwd()
 const kitDir = __dirname
 // const config = require(path.join(appDir, 'config.js'))
-const packageJson = require(path.join(appDir, 'package.json'))
+// const packageJson = require(path.join(appDir, 'package.json'))
 
 // const rootDir = path.join(__dirname, '..')
 const getDistPath = (srcDir = '') => path.join(appDir, 'public', srcDir)
 
 const ENV = process.env.ENV
 const PORT = process.env.PORT || 3000
-
 
 const routes = require('./lib/routes-metadata.js')
 
@@ -72,9 +70,6 @@ app.use(morgan(loggingPreset, {
 // Gzip content
 app.use(compression())
 
-
-
-
 const { APP_VERSION, APP_BUILD_DATE, APP_GIT_COMMIT, APP_BUILD_TAG } = process.env
 app.use('/ping.json', (req, res) => {
   res.json({
@@ -86,10 +81,10 @@ app.use('/ping.json', (req, res) => {
 })
 
 const checkValidResponse = html => {
-  const indexJson = { title: 'Get help with child arrangements'} // require('../data/index.json')
+  const indexJson = { title: 'Get help with child arrangements' } // require('../data/index.json')
   const indexMatch = new RegExp(`<h1[^>]*>${indexJson.title}</h1>`)
   return !!html.match(indexMatch)
-} 
+}
 
 app.use('/healthcheck.json', (req, res) => {
   let status = true
@@ -116,10 +111,9 @@ app.use('/healthcheck.json', (req, res) => {
     })
 })
 
-
 // Set Favicon
 app.use(favicon(path.join(appDir, 'node_modules', 'govuk_frontend_alpha', 'assets', 'images', 'template', 'favicon.ico')))
-//node_modules/govuk_frontend_alpha/assets/images/template/favicon.ico
+// node_modules/govuk_frontend_alpha/assets/images/template/favicon.ico
 // app.use(favicon(getDistPath('static/images/site-icons/favicon.ico')))
 
 // Enable reading of cookies
@@ -188,7 +182,6 @@ if (!ENV || ENV === 'prod' || ENV === 'staging' || ENV === 'private-beta') {
   })
 }
 
-
 var appViews = [
   path.join(appDir, 'app'),
   path.join(kitDir, 'app'),
@@ -204,69 +197,18 @@ var nunjucksAppEnv = nunjucks.configure(appViews, {
   watch: true
 })
 
-
-
-function TurnipExtension() {
-    this.tags = ['turnip'];
-
-    this.parse = function(parser, nodes, lexer) {
-        // get the tag token
-        var tok = parser.nextToken();
-
-        // parse the args and move after the block end. passing true
-        // as the second arg is required if there are no parentheses
-        var args = parser.parseSignature(null, true);
-        parser.advanceAfterBlockEnd(tok.value);
-
-        // parse the body and possibly the error block, which is optional
-        var body = parser.parseUntilBlocks('error', 'endturnip');
-        var errorBody = null;
-
-        if(parser.skipSymbol('error')) {
-            parser.skip(lexer.TOKEN_BLOCK_END);
-            errorBody = parser.parseUntilBlocks('endturnip');
-        }
-
-        parser.advanceAfterBlockEnd();
-
-        // See above for notes about CallExtension
-        return new nodes.CallExtension(this, 'run', args, [body, errorBody]);
-    };
-
-    this.run = function(context, url, body, errorBody) {
-        // console.log(context.ctx.govuk.button.toString())
-        // console.log(context.globals)
-        // console.log(context._globals)
-        // console.log(this)
-        var id = 'el' + Math.floor(Math.random() * 10000);
-        var ret = new nunjucks.runtime.SafeString('<div id="' + id + '">' + url + body() +  context.ctx.woot + '</div>');
-        ret = new nunjucks.runtime.SafeString(nunjucks.renderString('<div id="{{ id }}">{{ url }} - {{ body }} , Hello {{ username }}, {{ woot }}, {{ Block.Pish() }} {{ govuk.button(text="shonk") }}</div>', Object.assign({ username: 'James', id, url, body:body() }, context.ctx)))
-
-        return ret;
-    };
-}
-
-nunjucksAppEnv.addExtension('TurnipExtension', new TurnipExtension());
-
-
-// app.use(njk.ctxProc([
-//   reqCtxProcessor
-// ]))
-  // assetsCtxProcessor    
 nunjucksAppEnv.addGlobal('Block', {})
 nunjucksAppEnv.addGlobal('Object', Object)
 nunjucksAppEnv.addGlobal('objectAssign', (...args) => {
-  // console.log('ctx', this)
-  // Object.assign(this.ctx, args[1])
   Object.assign.apply(null, args)
 })
-nunjucksAppEnv.addGlobal('setCtx', function(key, val) { 
+nunjucksAppEnv.addGlobal('setCtx', function (key, val) {
   this.ctx[key] = val
 })
-nunjucksAppEnv.addGlobal('setGlobal', function(key, val) { 
+nunjucksAppEnv.addGlobal('setGlobal', function (key, val) {
   nunjucksAppEnv.addGlobal(key, val)
 })
-nunjucksAppEnv.addGlobal('getCtx', function() { 
+nunjucksAppEnv.addGlobal('getCtx', function () {
   return this.ctx
 })
 nunjucksAppEnv.addFilter('json', JSON.stringify)
@@ -280,7 +222,6 @@ app.use(assetSrcPath, express.static(path.join(appDir, 'app', 'assets')))
 app.use(assetSrcPath, express.static(path.join(kitDir, 'app', 'assets')))
 app.use(assetSrcPath, express.static(path.join(appDir, 'node_modules', 'govuk_frontend_alpha', 'assets')))
 
-
 // SET US UP SOME BEASTIES
 app.use((req, res, next) => {
   res.locals.ENV = ENV
@@ -291,10 +232,9 @@ app.use((req, res, next) => {
   next()
 })
 
+app.use('/', routes)
 
-app.use('/', routes);
-
-const context = { woot: 'w00t!', gobble:'explicit gobble', xasset_path:'/xpublic/'}
+const context = { woot: 'w00t!', gobble: 'explicit gobble', xasset_path: '/xpublic/' }
 
 app.get(/^\/([^.]+)$/, (req, res, next) => {
   var path = 'templates/' + (req.params[0])
@@ -304,7 +244,6 @@ app.get(/^\/([^.]+)$/, (req, res, next) => {
         if (err2) {
           // res.status(404).send(`${req.originalUrl} not found`)
           next()
-          return
         } else {
           res.send(html)
         }
@@ -315,8 +254,6 @@ app.get(/^\/([^.]+)$/, (req, res, next) => {
   })
 })
 
-
-
 // ALREADY GOT ONE, BUT OOOH EXTENSIONS
 // Set a static files folder (css, images etc...)
 app.use('/', express.static(getDistPath(), {
@@ -324,14 +261,12 @@ app.use('/', express.static(getDistPath(), {
   extensions: ['html']
 }))
 
-
 // ALREADY GOT ONE
 // app.use('/', routes)
 
 const { GA_TRACKING_ID } = process.env
 
 function errorRender (req, res, errCode) {
-
   const route = {
     id: errCode
   }
@@ -352,7 +287,7 @@ function errorHandler (err, req, res, next) {
     if (isNaN(errCode) || errCode > 500) {
       errCode = 500
     }
-    errorRender (req, res, errCode)
+    errorRender(req, res, errCode)
   }
 }
 
@@ -362,8 +297,6 @@ app.use((res, req, next) => {
 })
 
 app.use(errorHandler)
-
-
 
 app.listen(PORT, () => {
   logger('CAIT is running on localhost:' + PORT)

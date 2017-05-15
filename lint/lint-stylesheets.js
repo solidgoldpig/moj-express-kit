@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 
 const path = require('path')
-const glob = require('glob-promise')
 const stylelint = require('stylelint')
 
-const configFile = path.join(__dirname, 'stylelint.config.js')
+const configFile = path.join(__dirname, '..', 'stylelint.config.js')
 
 const srcPaths = ['app/**/*.pcss', 'app/**/*.css']
 
@@ -21,13 +20,12 @@ const testCSSFiles = (globPattern) => {
   }
 
   return stylelint.lint(soptions)
-    .then(function(resultObject) {
+    .then(resultObject => {
       if (resultObject.errored) {
         reportError(resultObject.output)
       }
       return globPattern
     })
-
 }
 
 Promise.all(srcPaths.map(globPattern => testCSSFiles(globPattern)))
