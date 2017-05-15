@@ -51,20 +51,20 @@
     "webdriverio": "^4.8.0"
   },
   "bin": {
-    "lint-data": "lint/lint-data.js",
-    "lint-javascript": "lint/lint-javascript.js",
-    "lint-javascript-client": "lint/lint-javascript-client.js",
-    "lint-javascript-server": "lint/lint-javascript-server.js",
-    "lint-stylesheets": "lint/lint-stylesheets.js",
-    "lint-templates": "lint/lint-templates.js"
+    "lint-data": "bin/lint-data.js",
+    "lint-javascript": "bin/lint-javascript.js",
+    "lint-javascript-client": "bin/lint-javascript-client.js",
+    "lint-javascript-server": "bin/lint-javascript-server.js",
+    "lint-stylesheets": "bin/lint-stylesheets.js",
+    "lint-templates": "bin/lint-templates.js"
   },
   "scripts": {
     "lint": "npm-run-all lint:data lint:stylesheets lint:templates lint:javascript:client lint:javascript:server",
-    "lint:data": "node lint/lint-data.js",
-    "lint:javascript:client": "node lint/lint-javascript-client.js",
-    "lint:javascript:server": "node lint/lint-javascript-server.js",
-    "lint:stylesheets": "node lint/lint-stylesheets.js",
-    "lint:templates": "node lint/lint-templates.js",
+    "lint:data": "node bin/lint-data.js",
+    "lint:javascript:client": "node bin/lint-javascript-client.js",
+    "lint:javascript:server": "node bin/lint-javascript-server.js",
+    "lint:stylesheets": "node bin/lint-stylesheets.js",
+    "lint:templates": "node bin/lint-templates.js",
     "postcssmv": "postcss -c postcss.config.js ../overhaul/app/css/*.pcss --dir ../overhaul/public/stylesheets && find ../overhaul/public/stylesheets -name *.pcss | sed -e 'p;s/\\.pcss$/.css/' | xargs -n2 mv",
     "postcss": "postcss -c postcss.config.js $APPDIR/app/css/*.css --dir $APPDIR/public/stylesheets",
     "watchpostcss": "yarn postcss -- --watch"

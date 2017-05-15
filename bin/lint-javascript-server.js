@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const linter = require('./lint-javascript')
 
-const paths = ['lib/**/*.js', 'lint/**/*.js']
+const paths = ['lib/**/*.js', 'bin/**/*.js']
 
 linter({
   paths
