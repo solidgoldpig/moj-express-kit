@@ -59,14 +59,18 @@
     "lint-templates": "bin/lint-templates.js"
   },
   "scripts": {
+    "githooks": "git config core.hooksPath .githooks",
+    "githooksUnset": "git config --unset core.hooksPath",
     "lint": "npm-run-all lint:data lint:stylesheets lint:templates lint:javascript:client lint:javascript:server",
     "lint:data": "node bin/lint-data.js",
     "lint:javascript:client": "node bin/lint-javascript-client.js",
     "lint:javascript:server": "node bin/lint-javascript-server.js",
     "lint:stylesheets": "node bin/lint-stylesheets.js",
     "lint:templates": "node bin/lint-templates.js",
+    "preinstall": "if [ -d .git ] && [ -x \"$(command -v git)\" ]; then npm run githooks; else echo 'git not installed'; fi;",
     "postcssmv": "postcss -c postcss.config.js ../overhaul/app/css/*.pcss --dir ../overhaul/public/stylesheets && find ../overhaul/public/stylesheets -name *.pcss | sed -e 'p;s/\\.pcss$/.css/' | xargs -n2 mv",
     "postcss": "postcss -c postcss.config.js $APPDIR/app/css/*.css --dir $APPDIR/public/stylesheets",
+    "test:unit": "echo no unit tests set up",
     "watchpostcss": "yarn postcss -- --watch"
   }
 }
