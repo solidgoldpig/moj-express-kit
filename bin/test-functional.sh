@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 CONFPATH=$PWD/codecept.conf.js
 
@@ -8,7 +8,7 @@ SCRIPTPATH=$HERE
 SYMLINKPATH=$(ls -l $SCRIPTPATH | awk '{print $11}')
 if [ "$SYMLINKPATH" != "" ]
   then
-  if [[ $SYMLINKPATH == ../* ]]
+  if [ "$SYMLINKPATH" == "../moj-express-kit/bin/test-functional.sh" ]
     then
     SCRIPTPATH=$(dirname $HERE)/$SYMLINKPATH
     else
