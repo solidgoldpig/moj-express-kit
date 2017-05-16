@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-echo "1 = $1"
-
 CONFPATH=$PWD/codecept.conf.js
 
 HERE=$0
@@ -12,10 +10,9 @@ if [ "$SYMLINKPATH" != "" ]
   then
   if [[ $SYMLINKPATH == ../* ]]
     then
-    echo DAMN $SYMLINKPATH
+    SCRIPTPATH=$(dirname $HERE)/$SYMLINKPATH
     else
     SCRIPTPATH=$SYMLINKPATH
-    echo OK scriptypath $SCRIPTPATH
   fi
 fi
 
