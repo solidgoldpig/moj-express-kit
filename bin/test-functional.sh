@@ -1,13 +1,22 @@
 #!/usr/bin/env sh
 
+echo "1 = $1"
+
 CONFPATH=$PWD/codecept.conf.js
 
-SCRIPTPATH=$0
+HERE=$0
+SCRIPTPATH=$HERE
 
 SYMLINKPATH=$(ls -l $SCRIPTPATH | awk '{print $11}')
 if [ "$SYMLINKPATH" != "" ]
   then
-  SCRIPTPATH=$SYMLINKPATH
+  if [[ $SYMLINKPATH == ../* ]]
+    then
+    echo DAMN $SYMLINKPATH
+    else
+    SCRIPTPATH=$SYMLINKPATH
+    echo OK scriptypath $SCRIPTPATH
+  fi
 fi
 
 SCRIPTPATH=$(dirname $SCRIPTPATH)
