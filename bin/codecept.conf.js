@@ -1,7 +1,8 @@
-const os = require('os')
-let hostIp
+const execSync = require('child_process').execSync
+const interfaces = require('os').networkInterfaces()
 const iface = process.env.interface || 'en0'
-const interfaces = os.networkInterfaces()
+
+let hostIp
 if (interfaces[iface]) {
   hostIp = interfaces[iface].filter(i => i.family === 'IPv4').map(i => i.address)[0]
 }
@@ -17,6 +18,25 @@ const seleniumProtocol = process.env.seleniumProtocol || 'http'
 const seleniumPort = process.env.seleniumPort || 4444
 const seleniumIp = process.env.seleniumIp || hostIp
 const seleniumUrl = `${seleniumProtocol}://${seleniumIp}:${seleniumPort}`
+
+// Check that app and selenium are up and running
+try {
+  execSync(`curl -I -s ${baseUrl}`)
+} catch (e) {
+  console.log(`App is not reachable at ${baseUrl}`)
+  process.exit(1)
+}
+try {
+  execSync(`curl -I -s ${seleniumUrl}`)
+} catch (e) {
+  console.log(`Selenium instance is not reachable at ${seleniumUrl}`)
+  if (process.env.seleniumIp) {
+    process.exit(1)
+  }
+  console.log(`Attempting to start Selenium instance`)
+  execSync('docker run --name cait-selenium -p 4444:4444 -d selenium/standalone-firefox:3.1.0')
+  execSync('sleep 10')
+}
 
 console.log('Codecept config', {baseUrl, seleniumUrl})
 
