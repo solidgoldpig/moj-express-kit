@@ -51,6 +51,7 @@
     "webdriverio": "^4.8.0"
   },
   "bin": {
+    "clean-docker": "bin/clean-docker.sh",
     "lint-data": "bin/lint-data.js",
     "lint-javascript": "bin/lint-javascript.js",
     "lint-javascript-client": "bin/lint-javascript-client.js",
@@ -58,7 +59,9 @@
     "lint-stylesheets": "bin/lint-stylesheets.js",
     "lint-templates": "bin/lint-templates.js",
     "test-functional": "bin/test-functional.sh",
-    "test-unit": "bin/test-unit.sh"
+    "test-functional-ci": "bin/test-functional-ci.sh",
+    "test-unit": "bin/test-unit.sh",
+    "test-unit-ci": "bin/test-unit-ci.sh"
   },
   "scripts": {
     "docker:selenium": "docker run --name cait-selenium -p 4444:4444 -d selenium/standalone-firefox:3.1.0",

@@ -21,6 +21,7 @@ SCRIPTPATH=$(dirname $SCRIPTPATH)
 echo "Copying config file to: $CONFPATH"
 cp $SCRIPTPATH/codecept.conf.js $CONFPATH
 
+# Run the tests
 node_modules/codeceptjs/bin/codecept.js run --steps
 
 if [ $? != 0 ]
