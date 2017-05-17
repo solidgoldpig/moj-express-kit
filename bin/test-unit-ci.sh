@@ -3,7 +3,7 @@
 if [[ $1 == "-h" || $1 == "--help" ]]
 then
   read -d '' USAGE <<- EndOfMessage
-		unit-tests-run.sh
+		test-unit-ci.sh
 		=================
 
 		Runs unit tests in a docker container
@@ -44,6 +44,20 @@ NOSKIP=false
 if [ "$SKIP_LINT" != "true" ]; then NOSKIP=true; fi
 if [ "$SKIP_UNIT" != "true" ]; then NOSKIP=true; fi
 
+HERE=$0
+SCRIPTPATH=$HERE
+SYMLINKPATH=$(ls -l $SCRIPTPATH | awk '{print $11}')
+if [ "$SYMLINKPATH" != "" ]
+  then
+  if [ "$SYMLINKPATH" == "../moj-express-kit/bin/test-unit-ci.sh" ]
+    then
+    SCRIPTPATH=$(dirname $HERE)/$SYMLINKPATH
+    else
+    SCRIPTPATH=$SYMLINKPATH
+  fi
+fi
+CLEANUPSCRIPT=$(dirname $SCRIPTPATH)/clean-docker.sh
+
 if [ $NOSKIP = true ]
 then
   DOCKERTAG=$(echo $JOB_NAME-$BUILD_NUMBER | tr '[:upper:]' '[:lower:]')
@@ -54,6 +68,7 @@ then
     docker run --name $DOCKERTAG-lint $TEST_IMAGE yarn lint
     if [ "$?" != "0" ]
     then
+      sh $CLEANUPSCRIPT
       exit 1
     fi
   fi
@@ -62,3 +77,5 @@ then
     docker run --name $DOCKERTAG-unit $TEST_IMAGE yarn test:unit
   fi
 fi
+
+sh $CLEANUPSCRIPT
