@@ -6,12 +6,10 @@ const frontendKitDir = __dirname
 const appDir = path.join(app, 'app')
 const kitAppDir = path.join(frontendKitDir, 'app')
 
-
-
 module.exports = {
   map: false,
   plugins: {
-    "postcss-import": {
+    'postcss-import': {
       path: [
         path.join(appDir, 'css'),
         path.join(kitAppDir, 'css'),
@@ -22,9 +20,9 @@ module.exports = {
         path.join(appDir, 'assets', 'stylesheets'),
         path.join(kitAppDir, 'assets', 'stylesheets')
       ]},
-    "postcss-cssnext": {},
-    "postcss-discard-duplicates": {},
-    "postcss-discard-comments": {},
-    "postcss-discard-empty": {}
+    'postcss-cssnext': {},
+    'postcss-discard-duplicates': {},
+    'postcss-discard-comments': {},
+    'postcss-discard-empty': {}
   }
 }
