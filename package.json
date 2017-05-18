@@ -64,7 +64,6 @@
     "test-unit-ci": "bin/test-unit-ci.sh"
   },
   "scripts": {
-    "docker:selenium": "docker run --name cait-selenium -p 4444:4444 -d selenium/standalone-firefox:3.1.0",
     "githooks": "git config core.hooksPath .githooks",
     "githooksUnset": "git config --unset core.hooksPath",
     "lint": "npm-run-all lint:data lint:stylesheets lint:templates lint:javascript:client lint:javascript:server",
